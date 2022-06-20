@@ -365,7 +365,7 @@ class Stream:
 
         """
         logger.debug("download finished")
-        on_complete = await self._monostate.on_complete
+        on_complete = self._monostate.on_complete
         if on_complete:
             logger.debug("calling on_complete callback %s", on_complete)
             await on_complete(self, file_path)
