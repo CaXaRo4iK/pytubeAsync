@@ -17,7 +17,6 @@ from pytube.helpers import regex_search
 
 logger = logging.getLogger(__name__)
 default_range_size = 9437184  # 9MB
-default_chunk_size = 4096  # 4kb
 
 
 async def _execute_request(
@@ -26,13 +25,9 @@ async def _execute_request(
     method="GET",
     headers=None,
     data=None,
-    timeout=900
+    timeout=socket._GLOBAL_DEFAULT_TIMEOUT
 ):
-    base_headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15",
-        "Accept-Language": "en-gb",
-        "Accept": "text/html,application/xhtml+xml,application/json,application/xml,*/*",
-        "Cookie": " SIDCC=AJi4QfH98WcrVkkwkemQMRQ9WZk9asesce9uEBJkCoSZx7KTeRNtuzR27BMQI2egTnqm88zh5X8; __Secure-3PSIDCC=AJi4QfFQwZXPSNQg6UMBf5qN10JKZXOo5rF_bNIt49K-rjiVAenqPrDUOIidVRuIVX2VuuXWgTuh; PREF=f6=80&cvdm=grid&tz=Europe.London&al=en&f1=50000000&f5=20030; YSC=LX5Yqn1VDIY; SID=7gcQhFI6EGi5fTesrHcRi7R8Kr7hATYaPzfFKRMKbU683gEa3lCY9Cxwp5Qvx95NzW0iJw.; __Secure-3PSID=7gcQhFI6EGi5fTesrHcRi7R8Kr7hATYaPzfFKRMKbU683gEasPa2dANKe7n6oJFYyNl3zQ.; VISITOR_INFO1_LIVE=yMho0O5Fu8c; LOGIN_INFO=AFmmF2swRgIhAID-B4DkkwhR-1gfK2OiiNzQnI9wvr4u2V8t9t_EelE4AiEA0f9f0va-cI6W4fuiUY1csuXBcGrtMesF0qClM6QKo1Q:QUQ3MjNmd0pST1pxNnZtcjBEeVZaWEIxeTdjd2tSX0NRUG9aS0xMbm9OUjF5cVhWS05pcmZRUlJxTW5xeElUWFZfM25COE5MYUNEbWQtX3YtMVo1elNHSUo5dUxKNk9QSTE4QU1TbXZQQUtiUzBENWhlR2lRVkoyWGRJVmVwRXA5MFdTc2JCNmZoOUZhb0ZaWWYwM19VanlydGZYMjEtMHZxX0FxNF8tbnBwRVIxeVB1dElIdUdDM1g1bGNyV29jT3NSWVAwTVZtRGlM; APISID=9Ypo17XlCCqRQOqg/AGiSpUTfb32XlzW5y; CONSENT=YES+GB.en+20150628-20-0; HSID=AVfH2Ju5Ehm1Mb2fQ; SAPISID=pga-i3racg1AaWor/Au9F8Y1xXPhYV7Wa4; SSID=APSW8jzRJN6bFhee7; __Secure-3PAPISID=pga-i3racg1AaWor/Au9F8Y1xXPhYV7Wa4"}
+    base_headers = {"User-Agent": "Mozilla/5.0", "accept-language": "en-US,en"}
     if headers:
         base_headers.update(headers)
     # if data:
