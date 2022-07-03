@@ -198,11 +198,12 @@ async def stream(
             tries += 1
 
         if file_size == default_range_size:
-            #try:
-            content_range = response.headers["Content-Range"]
-            file_size = int(content_range.split("/")[1])
-            #except (KeyError, IndexError, ValueError) as e:
-            #    logger.error(e)
+            try:
+                content_range = response.headers["Content-Range"]
+                file_size = int(content_range.split("/")[1])
+            except (KeyError, IndexError, ValueError) as e:
+                raise PermissionError("403 Youtube")
+                #logger.error(e)
         while True:
             chunk = await response.content.read(default_chunk_size)
             if not chunk:
